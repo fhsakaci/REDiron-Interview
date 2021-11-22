@@ -32,8 +32,11 @@ inputElement = driver.find_element_by_id("email")
 inputElement.send_keys('furkan.sakaci@gmail.com')
 driver.find_element_by_id('forgotPasswordForm').submit()
 
-time.sleep(4)
+time.sleep(1)
 error = driver.find_element_by_id('passwordAssistantErr')
-print(error.text)
+errorText = error.text
+driver.switch_to_default_content()
 
-driver.close()
+driver.execute_script("alert('" + errorText + "');")
+alert = driver.switch_to.alert
+time.sleep(10)
